@@ -1,0 +1,16 @@
+{
+  "name": "mmm-mytransittime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "MMM-MyTransitTime.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mta-subway-bullets": "^0.5.1",
+    "request": "^2.88.2"
+  }
+}
