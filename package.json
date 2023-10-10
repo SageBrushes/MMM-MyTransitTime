@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "SageBrushes on Github",
   "license": "ISC",
   "dependencies": {
     "mta-subway-bullets": "^0.5.1",
