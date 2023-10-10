@@ -1,0 +1,8 @@
+# macOS metadata
+.DS_Store
+._*
+
+# Node modules
+node_modules/
+
+# Add any other files/folders you want to ignore
