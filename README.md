@@ -15,39 +15,42 @@ Before you begin, ensure you have access to the following:
 2. Clone this module by running git clone https://github.com/YourGithubUsername/MMM-MyTransitTime.git
 3. Navigate to the MMM-MyTransitTime folder and npm install
 
-## Configuration
+## Configuration options
 
-Add the following configuration block to the modules array in your config/config.js file:
+| Option               | Description  |
+|----------------------|--------------|
+| `apiKey`             | Your Google Maps API key. **Required** |
+| `origin`             | The starting address for your route. Example: `"YOUR_ORIGIN_ADDRESS"`. **Required** |
+| `destination`        | The destination address for your route. Example: `"YOUR_DESTINATION_ADDRESS"`. **Required** |
+| `mode`               | Mode of transportation. Default: `"transit"`. |
+| `interval`           | How often the module should update its data, in milliseconds. Default: `60000` (1 minute). |
+| `showTransitDetails` | If set to `true`, the module will display step-by-step transit details. Default: `true`. |
+| `customLabel`        | Custom label for the module. Default: `"Estimated Time to Get to Work"`. |
+| `debounceDelay`      | Debounce delay in milliseconds. Default: `10000` (10 seconds). |
 
+### Example:
+
+```javascript
 {
-  module: "MMM-MyTransitTime",
-  position: "top_right", // Adjust this to your preference
-  config: {
-    apiKey: "YOUR_GOOGLE_MAPS_API_KEY",
-    origin: "YOUR_ORIGIN_ADDRESS",
-    destination: "YOUR_DESTINATION_ADDRESS",
-    mode: "transit",
-    interval: 60000, // 1 minute
-    showTransitDetails: true,
-    customLabel: "Estimated Time to Get to Work"
-  }
+    module: "MMM-MyTransitTime",
+    position: "top_right",
+    config: {
+        apiKey: "YOUR_API_KEY",
+        origin: "123 Main St, SomeCity, SomeCountry",
+        destination: "456 Elm St, AnotherCity, AnotherCountry",
+        mode: "transit",
+        interval: 60000,
+        showTransitDetails: true,
+        customLabel: "Time to Work",
+        debounceDelay: 10000
+    }
 }
-## Configuration Options
-
-Option	Description
-apiKey	Required Your Google Maps API key.
-origin	Required The starting address for your route.
-destination	Required The end address for your route.
-mode	Transportation mode. Default is transit.
-interval	Update frequency in milliseconds. Default is 60000 (1 minute).
-showTransitDetails	Display step-by-step transit details if set to true. Default is true.
-customLabel	Custom label for the module. Default is Estimated Time to Get to Work.
 
 ## Usage
 
 After adding the module to your config.js file, simply run the MagicMirror application. The module will display the estimated transit time and, if showTransitDetails is enabled, detailed transit steps.
 
-Contributing
+## Contributing
 
 Contributions are always welcome! If you'd like to contribute, please fork the repository and make your changes, then open a pull request.
 
