@@ -25,49 +25,53 @@ Module.register("MMM-MyTransitTime", {
   },
 
 // Override dom generator.
-  getDom: function () {
+getDom: function () {
 	const wrapper = document.createElement("div");
 	wrapper.className = "my-transit-time";
 
 	if (this.transitTime) {
-	  const timeElement = document.createElement("div");
-	  timeElement.className = "transit-time right-aligned"; // Add a class for right alignment
-	  timeElement.textContent = `Transit Time: ${this.transitTime}`;
-	  wrapper.appendChild(timeElement);
+		const timeElement = document.createElement("div");
+		timeElement.className = "transit-time right-aligned"; // Add a class for right alignment
+		timeElement.textContent = `Transit Time: ${this.transitTime}`;
+		wrapper.appendChild(timeElement);
 
-	  if (this.config.showTransitDetails && this.transitDetails) {
-		const detailsList = document.createElement("ul");
-		detailsList.className = "transit-details";
+		if (this.config.showTransitDetails && this.transitDetails) {
+			const detailsList = document.createElement("ul");
+			detailsList.className = "transit-details";
 
-		this.transitDetails.forEach((detail) => {
-		  const listItem = document.createElement("li");
+			this.transitDetails.forEach((detail) => {
+				const listItem = document.createElement("li");
+				const textSpan = document.createElement("span");
 
-		  if (detail.includes("WALKING")) {
-			const walkingIcon = document.createElement("i");
-			walkingIcon.className = "fas fa-walking"; // FontAwesome walking icon
-			listItem.appendChild(walkingIcon);
-		  } else if (detail.includes("TRANSIT")) {
-			const transitIcon = document.createElement("img");
-			transitIcon.src = this.getGoogleTransitIcon(detail); // Get the train line icon from Google API data
-			transitIcon.className = "mta-subway-icon"; // Add a class for styling
-			listItem.appendChild(transitIcon);
-		  }
+				if (detail.includes("WALKING")) {
+					const walkingIcon = document.createElement("i");
+					walkingIcon.className = "fas fa-walking"; // FontAwesome walking icon
+					listItem.appendChild(walkingIcon);
+					textSpan.textContent = detail;
+				} else if (detail.includes("TRANSIT")) {
+					const transitIcon = document.createElement("i");
+					transitIcon.className = "fas fa-subway"; // FontAwesome subway/train icon
+					listItem.appendChild(transitIcon);
+					// Extract the line name from the detail and append it
+					const lineName = detail.match(/Take (.*?) from/)[1]; // Adjust regex if needed
+					textSpan.textContent = `${lineName} - ${detail}`;
+				}
 
-		  listItem.textContent = detail;
-		  detailsList.appendChild(listItem);
-		});
+				listItem.appendChild(textSpan);
+				detailsList.appendChild(listItem);
+			});
 
-		wrapper.appendChild(detailsList);
-	  }
+			wrapper.appendChild(detailsList);
+		}
 	} else {
-	  const errorMessage = document.createElement("div");
-	  errorMessage.className = "error-message";
-	  errorMessage.textContent = "No transit data available.";
-	  wrapper.appendChild(errorMessage);
+		const errorMessage = document.createElement("div");
+		errorMessage.className = "error-message";
+		errorMessage.textContent = "No transit data available.";
+		wrapper.appendChild(errorMessage);
 	}
 
 	return wrapper;
-  },
+},
 
   // Helper function to extract Google transit icon from detail
   getGoogleTransitIcon: function (detail) {
