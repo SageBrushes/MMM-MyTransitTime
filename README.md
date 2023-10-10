@@ -2,7 +2,7 @@
 
 A MagicMirror module that displays the estimated transit time from a specified origin to a destination, with detailed transit information.
 
-![Screenshot of MMM-MyTransitTime](/MMM-MyTransitTime/example.png)
+![Screenshot of MMM-MyTransitTime](/example.png)
 
 ## Prerequisites
 
