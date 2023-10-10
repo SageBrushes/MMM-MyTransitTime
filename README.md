@@ -45,6 +45,7 @@ Before you begin, ensure you have access to the following:
         debounceDelay: 10000
     }
 }
+```
 
 ## Usage
 
